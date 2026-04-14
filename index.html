@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- SEO -->
+  <title>VS TEAM — Consultoria Esportiva Online | Treino Personalizado</title>
+  <meta name="description" content="Consultoria esportiva online da VS TEAM. Treinos personalizados, acompanhamento por app e suporte via WhatsApp. Transforme seu corpo com protocolos sob medida." />
+  <meta name="keywords" content="consultoria esportiva, treino online, personal trainer online, treino personalizado, VS TEAM" />
+  <meta name="author" content="VS TEAM" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="VS TEAM — Consultoria Esportiva Online" />
+  <meta property="og:description" content="Treinos personalizados online com acompanhamento profissional. Escolha seu plano e comece sua transformação." />
+  <meta property="og:image" content="[PLACEHOLDER: URL_IMAGEM_OG]" />
+  <meta property="og:url" content="[PLACEHOLDER: URL_SITE]" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="VS TEAM — Consultoria Esportiva Online" />
+  <meta name="twitter:description" content="Treinos personalizados online com acompanhamento profissional." />
+
+  <!-- Fontes com font-display: swap -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- CSS crítico inline (above the fold) -->
+  <style>
+    :root{--bg:#0a0a0a;--red:#E53935;--red-2:#FF1744;--white:#fff;--gray:#B0B0B0}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--white);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 1.25rem 4rem}
+  </style>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Schema Markup: LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "VS TEAM",
+    "description": "Consultoria esportiva online com treinos personalizados",
+    "image": "[PLACEHOLDER: URL_LOGO]",
+    "telephone": "[PLACEHOLDER: +55 XX XXXXX-XXXX]",
+    "priceRange": "R$ 220 - R$ 2160",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "BR"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "250"
+    }
+  }
+  </script>
+
+  <!-- Schema Markup: Product (pacote mais popular) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Pacote 3 Protocolos - VS TEAM",
+    "description": "3 protocolos de treino personalizado com acompanhamento online",
+    "brand": {"@type":"Brand","name":"VS TEAM"},
+    "offers": {
+      "@type": "Offer",
+      "price": "780.00",
+      "priceCurrency": "BRL",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#hero" class="logo" aria-label="VS TEAM - Página inicial">
+        <img src="logo.png" alt="VS TEAM" class="logo__img">
+      </a>
+      <nav class="nav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="#como-funciona">Como Funciona</a></li>
+          <li><a href="#servicos">Planos</a></li>
+          <li><a href="#transformacoes">Transformações</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <button class="btn btn--primary btn--small nav__cta" onclick="scrollToSection('servicos')">VER PLANOS</button>
+      <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" id="navToggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="hero" id="hero" aria-label="Apresentação VS TEAM">
+    <!-- Vídeo de fundo em loop (opcional) ou imagem hero -->
+    <div class="hero__media" aria-hidden="true">
+      <!-- [PLACEHOLDER: substituir src por vídeo real] -->
+      <video class="hero__video" autoplay muted loop playsinline poster="[PLACEHOLDER: URL_POSTER]">
+        <source src="[PLACEHOLDER: URL_VIDEO_HERO.mp4]" type="video/mp4" />
+      </video>
+      <div class="hero__overlay"></div>
+    </div>
+
+    <div class="hero__content container">
+      <h1 class="hero__title" data-reveal>
+        Transforme seu corpo com<br />
+        <span class="text-gradient">treino personalizado</span>
+      </h1>
+
+      <p class="hero__subtitle" data-reveal>
+        Consultoria esportiva online com protocolos sob medida, acompanhamento por aplicativo e suporte direto com a nossa equipe via WhatsApp.
+      </p>
+
+      <div class="hero__actions" data-reveal>
+        <button class="btn btn--primary btn--pulse btn--large" onclick="scrollToSection('servicos')">
+          VER PLANOS
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn btn--ghost btn--large" onclick="scrollToSection('como-funciona')">Como Funciona</button>
+      </div>
+
+      <!-- Contadores animados -->
+      <div class="hero__stats" data-reveal>
+        <div class="stat">
+          <span class="stat__num" data-count="1500" data-suffix="+">0</span>
+          <span class="stat__label">Alunos Ativos</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num" data-count="25000" data-suffix="+">0</span>
+          <span class="stat__label">Treinos Entregues</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num" data-count="4.9" data-decimals="1">0</span>
+          <span class="stat__label">★ Avaliação Média</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num" data-count="98" data-suffix="%">0</span>
+          <span class="stat__label">Taxa de Satisfação</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#como-funciona" class="hero__scroll" aria-label="Rolar para próxima seção">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ============ TRANSFORMAÇÕES ============ -->
+  <section class="section transformations" id="transformacoes" aria-labelledby="trans-title">
+    <div class="container">
+      <header class="section__header" data-reveal>
+        <span class="eyebrow">Resultados reais</span>
+        <h2 id="trans-title" class="section__title">Transformações dos nossos alunos</h2>
+        <p class="section__subtitle">Arraste o controle para revelar o antes e depois</p>
+      </header>
+
+      <div class="transformations__grid" id="transformationsGrid">
+        <!-- Gerado via JS -->
+      </div>
+
+      <div class="text-center" data-reveal>
+        <button class="btn btn--primary btn--large" onclick="scrollToSection('servicos')">
+          SEJA A PRÓXIMA TRANSFORMAÇÃO
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMO FUNCIONA ============ -->
+  <section class="section how" id="como-funciona" aria-labelledby="how-title">
+    <div class="container">
+      <header class="section__header" data-reveal>
+        <span class="eyebrow">Processo simples</span>
+        <h2 id="how-title" class="section__title">Como Funciona</h2>
+        <p class="section__subtitle">Em poucos passos você começa sua jornada de transformação com a VS TEAM</p>
+      </header>
+
+      <ol class="timeline" role="list">
+        <li class="timeline__item" data-reveal>
+          <div class="timeline__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M12 2a10 10 0 100 20 10 10 0 000-20z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__step">01</span>
+            <h3>Escolha seu plano</h3>
+            <p>Selecione o pacote de protocolos que melhor se encaixa na sua rotina e objetivo.</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <div class="timeline__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zM14 2v6h6M8 13h8M8 17h8M8 9h2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__step">02</span>
+            <h3>Preencha a anamnese</h3>
+            <p>Responda um questionário completo sobre seu histórico, rotina, limitações e metas.</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <div class="timeline__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor" stroke-width="2"/><path d="M12 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__step">03</span>
+            <h3>Receba seu treino no app</h3>
+            <p>Protocolo completo entregue no aplicativo exclusivo, com vídeos e descrições.</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <div class="timeline__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__step">04</span>
+            <h3>Tire dúvidas pelo WhatsApp</h3>
+            <p>Suporte direto com nossa equipe para dúvidas de execução e ajustes necessários.</p>
+          </div>
+        </li>
+        <li class="timeline__item" data-reveal>
+          <div class="timeline__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M23 6l-9.5 9.5-5-5L1 18M17 6h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="timeline__content">
+            <span class="timeline__step">05</span>
+            <h3>Evolua e renove</h3>
+            <p>A cada protocolo concluído, seu próximo treino é ajustado com base na sua evolução.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 3. SERVIÇOS (CARDS EXPANSÍVEIS) ============ -->
+  <section class="section services" id="servicos" aria-labelledby="services-title">
+    <div class="container">
+      <header class="section__header" data-reveal>
+        <span class="eyebrow">Nossos planos</span>
+        <h2 id="services-title" class="section__title">Escolha o seu protocolo</h2>
+        <p class="section__subtitle">Pacotes flexíveis para todos os níveis e objetivos. Clique em um plano para ver todos os detalhes.</p>
+      </header>
+
+      <div class="services__grid" id="servicesGrid">
+        <!-- Cards renderizados via JS a partir do array de dados -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. PLANO DESTAQUE - ASSINATURA ============ -->
+  <section class="section subscription" id="assinatura" aria-labelledby="sub-title">
+    <div class="container">
+      <header class="section__header" data-reveal>
+        <span class="eyebrow eyebrow--gold">Recorrência</span>
+        <h2 id="sub-title" class="section__title">Plano Assinatura Mensal</h2>
+        <p class="section__subtitle">A forma mais inteligente de manter a constância na sua evolução</p>
+      </header>
+
+      <div class="subscription__card" data-reveal>
+        <div class="subscription__badge">★ Melhor custo-benefício</div>
+        <div class="subscription__header">
+          <h3>Assinatura VS TEAM</h3>
+          <div class="subscription__price">
+            <span class="currency">R$</span>
+            <span class="amount">220</span>
+            <span class="period">/mês</span>
+          </div>
+          <p class="subscription__desc">Acompanhamento contínuo com renovação automática do protocolo</p>
+        </div>
+
+        <ul class="benefits-list">
+          <li><span class="check">✓</span> Protocolo renovado mensalmente</li>
+          <li><span class="check">✓</span> Acesso completo ao aplicativo</li>
+          <li><span class="check">✓</span> Suporte prioritário via WhatsApp</li>
+          <li><span class="check">✓</span> Avaliações de evolução recorrentes</li>
+          <li><span class="check">✓</span> Cancele quando quiser, sem fidelidade</li>
+          <li><span class="check">✓</span> Biblioteca exclusiva de vídeos de execução</li>
+        </ul>
+
+        <div class="subscription__actions">
+          <button class="btn btn--primary btn--large btn--full" onclick="handlePurchase('assinatura')">
+            QUERO ASSINAR AGORA
+          </button>
+          <a class="btn btn--whatsapp btn--full" href="#" onclick="openWhatsApp('assinatura'); return false;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1s-.8.9-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5 0-.1-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.8.8 2.5.9 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.8 1.5 5.4L2 22l4.7-1.5c1.6.9 3.4 1.4 5.3 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+            Tirar dúvidas no WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DEPOIMENTOS E AVALIAÇÕES ============ -->
+  <section class="section testimonials" id="depoimentos" aria-labelledby="test-title">
+    <div class="container">
+      <header class="section__header" data-reveal>
+        <span class="eyebrow">Avaliações</span>
+        <h2 id="test-title" class="section__title">O que dizem nossos alunos</h2>
+
+        <div class="google-rating" data-reveal>
+          <div class="google-rating__logo" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            <strong>Google</strong>
+          </div>
+          <div class="google-rating__score">
+            <span class="score">4.9</span>
+            <div class="stars" aria-label="4.9 de 5 estrelas">★★★★★</div>
+            <span class="reviews-count">Baseado em [PLACEHOLDER: 250] avaliações</span>
+          </div>
+          <a href="[PLACEHOLDER: LINK_GOOGLE_REVIEWS]" class="btn btn--ghost btn--small" target="_blank" rel="noopener">Ver todas</a>
+        </div>
+      </header>
+
+      <div class="testimonials__carousel" data-reveal>
+        <button class="carousel__btn carousel__btn--prev" aria-label="Depoimento anterior" id="testPrev">‹</button>
+        <div class="testimonials__track" id="testimonialsTrack">
+          <!-- Gerado via JS -->
+        </div>
+        <button class="carousel__btn carousel__btn--next" aria-label="Próximo depoimento" id="testNext">›</button>
+        <div class="carousel__dots" id="testDots" role="tablist"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. FAQ GERAL ============ -->
+  <section class="section faq" id="faq" aria-labelledby="faq-title">
+    <div class="container container--narrow">
+      <header class="section__header" data-reveal>
+        <span class="eyebrow">Perguntas Frequentes</span>
+        <h2 id="faq-title" class="section__title">Tire suas dúvidas</h2>
+      </header>
+
+      <div class="accordion" id="faqAccordion">
+        <details class="accordion__item" data-reveal>
+          <summary>Como funciona a consultoria online da VS TEAM?</summary>
+          <div class="accordion__content">
+            <p>Após a contratação, você preenche uma anamnese detalhada. Nossa equipe analisa suas informações e monta um protocolo personalizado, entregue no aplicativo em até 5 dias úteis.</p>
+          </div>
+        </details>
+        <details class="accordion__item" data-reveal>
+          <summary>Qual é o prazo de entrega do protocolo?</summary>
+          <div class="accordion__content"><p>O protocolo é entregue em até 5 dias úteis após o preenchimento da anamnese e confirmação do pagamento.</p></div>
+        </details>
+        <details class="accordion__item" data-reveal>
+          <summary>Preciso baixar algum aplicativo?</summary>
+          <div class="accordion__content"><p>Sim, utilizamos um app exclusivo disponível para iOS e Android. Os acessos são enviados logo após a compra.</p></div>
+        </details>
+        <details class="accordion__item" data-reveal>
+          <summary>Quais são as formas de pagamento?</summary>
+          <div class="accordion__content"><p>Aceitamos cartão de crédito (parcelado em até 12x), Pix e boleto. Para assinaturas, apenas cartão ou Pix recorrente.</p></div>
+        </details>
+        <details class="accordion__item" data-reveal>
+          <summary>Posso cancelar a assinatura a qualquer momento?</summary>
+          <div class="accordion__content"><p>Sim. A assinatura não tem fidelidade e você pode cancelar a qualquer momento direto no app ou via WhatsApp.</p></div>
+        </details>
+        <details class="accordion__item" data-reveal>
+          <summary>Para quem é indicada essa consultoria?</summary>
+          <div class="accordion__content"><p>Para qualquer pessoa acima de 16 anos que busca evoluir com treino guiado, seja iniciante, intermediário ou avançado.</p></div>
+        </details>
+        <details class="accordion__item" data-reveal>
+          <summary>Preciso ter academia para fazer os treinos?</summary>
+          <div class="accordion__content"><p>Não necessariamente. No momento da anamnese você informa seus equipamentos disponíveis e o protocolo é adaptado (academia, casa, parque, etc.).</p></div>
+        </details>
+        <details class="accordion__item" data-reveal>
+          <summary>Tenho suporte direto com o treinador?</summary>
+          <div class="accordion__content"><p>Sim. Oferecemos suporte via WhatsApp em horário comercial para dúvidas de execução, ajustes e evolução.</p></div>
+        </details>
+        <details class="accordion__item" data-reveal>
+          <summary>O protocolo inclui dieta nutricional?</summary>
+          <div class="accordion__content"><p>Não. A VS TEAM é focada em consultoria esportiva (treino). Para plano alimentar recomendamos um nutricionista esportivo parceiro.</p></div>
+        </details>
+        <details class="accordion__item" data-reveal>
+          <summary>Existe política de reembolso?</summary>
+          <div class="accordion__content"><p>Sim. Você tem 7 dias corridos após a compra para solicitar reembolso integral, conforme Código de Defesa do Consumidor.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. FOOTER COM CTA FINAL ============ -->
+  <section class="final-cta" aria-labelledby="final-title">
+    <div class="container text-center">
+      <h2 id="final-title" class="final-cta__title" data-reveal>Comece sua transformação agora</h2>
+      <p class="final-cta__subtitle" data-reveal>Junte-se a milhares de alunos que já estão evoluindo com a VS TEAM</p>
+      <button class="btn btn--primary btn--pulse btn--large" onclick="scrollToSection('servicos')" data-reveal>ESCOLHER MEU PLANO</button>
+    </div>
+  </section>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="#hero" class="logo"><img src="logo.png" alt="VS TEAM" class="logo__img"></a>
+          <p>Consultoria esportiva online. Transformando corpos e vidas através do treino personalizado.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#como-funciona">Como Funciona</a></li>
+            <li><a href="#servicos">Planos</a></li>
+            <li><a href="#transformacoes">Transformações</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contato</h4>
+          <ul>
+            <li><a href="#" onclick="openWhatsApp('geral'); return false;">WhatsApp — Dúvidas gerais</a></li>
+            <li><a href="mailto:[PLACEHOLDER: contato@vsteam.com.br]">[PLACEHOLDER: contato@vsteam.com.br]</a></li>
+          </ul>
+          <div class="footer__social">
+            <a href="[PLACEHOLDER: INSTAGRAM]" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="[PLACEHOLDER: YOUTUBE]" aria-label="YouTube" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+            </a>
+            <a href="[PLACEHOLDER: TIKTOK]" aria-label="TikTok" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005.8 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1.84-.1z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>Empresa</h4>
+          <ul>
+            <li>[PLACEHOLDER: Razão Social LTDA]</li>
+            <li>CNPJ: [PLACEHOLDER: 00.000.000/0001-00]</li>
+            <li><a href="[PLACEHOLDER: LINK_TERMOS]">Termos de Uso</a></li>
+            <li><a href="[PLACEHOLDER: LINK_PRIVACIDADE]">Política de Privacidade</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span id="year"></span> VS TEAM — Todos os direitos reservados. <a href="admin.html" class="footer__admin">admin</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ STICKY MOBILE CTA ============ -->
+  <div class="mobile-cta" id="mobileCta" aria-hidden="true">
+    <button class="btn btn--primary" onclick="scrollToSection('servicos')">VER PLANOS</button>
+    <button class="btn btn--ghost" style="background:rgba(255,255,255,0.06);border:1px solid var(--border);color:#fff" onclick="openWhatsApp('duvidas-planos')" aria-label="Falar no WhatsApp">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1s-.8.9-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5 0-.1-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.8.8 2.5.9 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.8 1.5 5.4L2 22l4.7-1.5c1.6.9 3.4 1.4 5.3 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+    </button>
+  </div>
+
+  <!-- ============ FLOATING WHATSAPP ============ -->
+  <div class="wa-float" id="waFloat">
+    <div class="wa-float__tooltip" id="waTooltip">Tire suas dúvidas</div>
+    <button class="wa-float__btn" id="waBtn" aria-label="Abrir chat do WhatsApp" aria-expanded="false">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1s-.8.9-.9 1.1c-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5 0-.1-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.8.8 2.5.9 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.8 1.5 5.4L2 22l4.7-1.5c1.6.9 3.4 1.4 5.3 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+    </button>
+    <div class="wa-widget" id="waWidget" role="dialog" aria-label="Opções WhatsApp">
+      <div class="wa-widget__header">
+        <strong>VS TEAM</strong>
+        <span>Normalmente responde em alguns minutos</span>
+        <button class="wa-widget__close" id="waClose" aria-label="Fechar">×</button>
+      </div>
+      <div class="wa-widget__body">
+        <p>Escolha o motivo do seu contato:</p>
+        <button class="wa-option" onclick="openWhatsApp('duvidas-planos')">
+          <span class="wa-option__icon">💪</span>
+          <span>
+            <strong>Dúvidas sobre planos</strong>
+            <small>Quero saber mais antes de comprar</small>
+          </span>
+        </button>
+        <button class="wa-option" onclick="openWhatsApp('aluno')">
+          <span class="wa-option__icon">🎯</span>
+          <span>
+            <strong>Já sou aluno</strong>
+            <small>Dúvidas sobre meu protocolo</small>
+          </span>
+        </button>
+        <button class="wa-option" onclick="openWhatsApp('suporte')">
+          <span class="wa-option__icon">🛠️</span>
+          <span>
+            <strong>Suporte técnico</strong>
+            <small>Problemas com o app ou acesso</small>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="site-data.js" defer onerror="console.warn('site-data.js não encontrado')"></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

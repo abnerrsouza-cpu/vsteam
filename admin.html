@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — VS TEAM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      min-height: 100vh;
+      padding-bottom: 4rem;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .topbar__title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .topbar__title img { height: 36px; width: auto; }
+    .topbar__actions { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+    .btn {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      padding: 0.7rem 1.2rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: transform 0.15s, opacity 0.2s;
+      text-decoration: none;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn--primary { background: linear-gradient(135deg, #E53935, #B71C1C); }
+    .btn--ghost { background: transparent; border-color: rgba(255,255,255,0.2); color: #ccc; }
+    .btn--small { font-size: 0.75rem; padding: 0.45rem 0.9rem; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .status {
+      font-size: 0.82rem;
+      color: #B0B0B0;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+    }
+    .status.saved { color: #4CAF50; }
+    .status.dirty { color: #FFC107; }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    .section {
+      margin-bottom: 2.5rem;
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+    .section__title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0 0 0.25rem;
+    }
+    .section__desc {
+      font-size: 0.88rem;
+      color: #999;
+      margin: 0 0 1.25rem;
+    }
+    .field { margin-bottom: 1rem; }
+    .label {
+      display: block;
+      font-size: 0.82rem;
+      color: #ccc;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+    .input {
+      width: 100%;
+      background: #0a0a0a;
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+    .input:focus { outline: none; border-color: #E53935; }
+
+    .uploader {
+      display: block;
+      position: relative;
+      border: 2px dashed rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      min-height: 140px;
+      background: #0a0a0a;
+      overflow: hidden;
+    }
+    .uploader:hover { border-color: #E53935; background: #0d0d0d; }
+    .uploader input[type=file] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .uploader__preview {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+    .uploader__placeholder {
+      color: #777;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 140px;
+    }
+    .uploader__icon { font-size: 2rem; opacity: 0.5; }
+    .uploader__remove {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      font-size: 1rem;
+      z-index: 2;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+    .grid--2 { grid-template-columns: 1fr 1fr; }
+    .grid--transformations {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+    @media (max-width: 600px) {
+      .grid--2 { grid-template-columns: 1fr; }
+      .topbar { padding: 0.75rem 1rem; gap: 0.5rem; }
+      .topbar__title { font-size: 1rem; }
+      .topbar__title img { height: 30px; }
+      .topbar__actions { width: 100%; justify-content: space-between; }
+      .btn { padding: 0.55rem 0.8rem; font-size: 0.72rem; }
+      .btn--small { font-size: 0.68rem; padding: 0.4rem 0.7rem; }
+      .container { padding: 1rem; }
+      .section { padding: 1rem; border-radius: 12px; }
+      .grid--transformations { grid-template-columns: 1fr; }
+      .info-row { grid-template-columns: 1fr; }
+    }
+    .transformation-card {
+      background: #0a0a0a;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .transformation-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .transformation-card__title {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .ba-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .ba-pair__label { font-size: 0.72rem; color: #999; text-transform: uppercase; margin-bottom: 0.3rem; letter-spacing: 0.05em; }
+    .info-row { display: grid; grid-template-columns: 2fr 1fr 2fr; gap: 0.5rem; }
+    @media (max-width: 500px) {
+      .info-row { grid-template-columns: 1fr; }
+    }
+    .danger {
+      color: #ff5252;
+      background: transparent;
+      border: 1px solid rgba(255,82,82,0.3);
+      font-size: 0.72rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #E53935;
+      color: #fff;
+      padding: 0.8rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.success { background: #4CAF50; }
+    .hint {
+      font-size: 0.78rem;
+      color: #888;
+      margin-top: 0.5rem;
+      padding: 0.6rem 0.8rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 6px;
+      border-left: 3px solid #E53935;
+    }
+    .add-btn {
+      width: 100%;
+      background: transparent;
+      border: 1px dashed rgba(255,255,255,0.2);
+      color: #ccc;
+      padding: 1rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+    }
+    .add-btn:hover { border-color: #E53935; color: #fff; }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar__title">
+      <img src="logo.png" alt="VS TEAM" onerror="this.style.display='none'">
+      <span>Painel Admin</span>
+    </div>
+    <div class="topbar__actions">
+      <span class="status" id="status">Sem alterações</span>
+      <button class="btn btn--ghost btn--small" id="btnViewSite">← Ver site</button>
+      <button class="btn btn--ghost btn--small" id="btnExport" title="Baixar JSON com todos os dados">⬇ Exportar</button>
+      <label class="btn btn--ghost btn--small" for="fileImport" title="Importar JSON">⬆ Importar<input type="file" id="fileImport" accept="application/json" style="display:none"></label>
+      <button class="btn btn--ghost btn--small" id="btnReset" title="Descartar alterações não publicadas">Descartar</button>
+      <button class="btn btn--primary" id="btnPublish" disabled>✓ Publicar</button>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="hint">
+      💡 Ao clicar em <b>Publicar</b>, um arquivo <code>site-data.js</code> é baixado. <b>Coloque este arquivo na pasta do site</b> (substituindo o atual) — pronto, o site estará atualizado para todos os visitantes.<br>
+      Use <b>Exportar</b> para baixar um JSON de backup completo (pode reimportar depois ou me enviar).
+    </div>
+
+    <!-- LOGO -->
+    <section class="section">
+      <h2 class="section__title">Logotipo</h2>
+      <p class="section__desc">Imagem que aparece no topo e no rodapé do site.</p>
+      <div data-uploader="logo"></div>
+    </section>
+
+    <!-- HERO -->
+    <section class="section">
+      <h2 class="section__title">Imagem/Vídeo Principal (Hero)</h2>
+      <p class="section__desc">A primeira imagem ou vídeo que o visitante vê ao abrir o site.</p>
+      <div data-uploader="hero" data-accept="image/*,video/*"></div>
+    </section>
+
+    <!-- TRANSFORMAÇÕES -->
+    <section class="section">
+      <h2 class="section__title">Transformações (Antes e Depois)</h2>
+      <p class="section__desc">Gerencie os antes/depois exibidos na seção de resultados.</p>
+      <div class="grid grid--transformations" id="transformationsList"></div>
+      <button class="add-btn" id="btnAddTransformation" style="margin-top:1rem">+ Adicionar transformação</button>
+    </section>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /* ============================================
+       ADMIN — VS TEAM
+       Armazena imagens e dados em localStorage.
+       ============================================ */
+
+    const STORAGE_KEY = 'vsteam_site_data';      // dados publicados
+    const DRAFT_KEY   = 'vsteam_site_draft';     // rascunho
+    const MAX_IMG_DIM = 1600;                    // redimensiona imagens grandes
+    const JPEG_QUALITY = 0.85;
+
+    // estado em memória (rascunho)
+    let state = migrateState(loadDraft() || loadPublished() || defaultState());
+    let dirty = !!localStorage.getItem(DRAFT_KEY);
+
+    function defaultState() {
+      return {
+        logo: null,
+        hero: null,
+        heroType: null, // 'image' | 'video'
+        transformations: [
+          { name: 'Aluno 1', age: 28, time: '6 meses de acompanhamento', image: null },
+          { name: 'Aluno 2', age: 35, time: '4 meses de acompanhamento', image: null },
+          { name: 'Aluno 3', age: 42, time: '8 meses de acompanhamento', image: null },
+        ]
+      };
+    }
+
+    // Migra estrutura antiga (before/after) para nova (image única)
+    function migrateState(s) {
+      if (!s) return s;
+      if (Array.isArray(s.transformations)) {
+        s.transformations = s.transformations.map(t => {
+          if (t.image !== undefined) return t;
+          return { name: t.name, age: t.age, time: t.time, image: t.after || t.before || null };
+        });
+      }
+      return s;
+    }
+
+    function loadDraft() {
+      try { return JSON.parse(localStorage.getItem(DRAFT_KEY)); } catch { return null; }
+    }
+    function loadPublished() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch { return null; }
+    }
+
+    function saveDraft() {
+      try {
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(state));
+        dirty = true;
+        updateStatus();
+      } catch (e) {
+        toast('Erro ao salvar: armazenamento cheio. Remova alguma imagem.', false);
+        console.error(e);
+      }
+    }
+
+    function publish() {
+      // Salva no localStorage (preview rápido neste navegador)
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        localStorage.removeItem(DRAFT_KEY);
+        dirty = false;
+        updateStatus();
+      } catch (e) {
+        console.warn('localStorage cheio, mas seguirá com o download:', e);
+      }
+      // Gera e baixa site-data.js — o usuário deve substituir na pasta do site
+      try {
+        const content = 'window.VSTEAM_DATA = ' + JSON.stringify(state) + ';';
+        const blob = new Blob([content], { type: 'application/javascript' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'site-data.js';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        toast('site-data.js baixado! Coloque-o na pasta do site, substituindo o atual.', true);
+      } catch (e) {
+        toast('Erro ao gerar o arquivo de publicação.', false);
+        console.error(e);
+      }
+    }
+
+    function discardDraft() {
+      if (!confirm('Descartar todas as alterações não publicadas?')) return;
+      localStorage.removeItem(DRAFT_KEY);
+      state = loadPublished() || defaultState();
+      dirty = false;
+      renderAll();
+      updateStatus();
+      toast('Alterações descartadas.', true);
+    }
+
+    function updateStatus() {
+      const s = document.getElementById('status');
+      const btn = document.getElementById('btnPublish');
+      if (dirty) {
+        s.textContent = '● Alterações não publicadas';
+        s.className = 'status dirty';
+        btn.disabled = false;
+      } else {
+        s.textContent = '✓ Publicado';
+        s.className = 'status saved';
+        btn.disabled = true;
+      }
+    }
+
+    /* ---------- upload / compressão ---------- */
+    function readFile(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function processImage(file) {
+      const dataUrl = await readFile(file);
+      // se for vídeo, retorna direto
+      if (file.type.startsWith('video/')) return { data: dataUrl, type: 'video' };
+      // imagem: redimensiona se muito grande
+      const img = new Image();
+      await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = dataUrl; });
+      let { width, height } = img;
+      if (width > MAX_IMG_DIM || height > MAX_IMG_DIM) {
+        const scale = MAX_IMG_DIM / Math.max(width, height);
+        width = Math.round(width * scale);
+        height = Math.round(height * scale);
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      const isPng = file.type === 'image/png';
+      const out = canvas.toDataURL(isPng ? 'image/png' : 'image/jpeg', JPEG_QUALITY);
+      return { data: out, type: 'image' };
+    }
+
+    /* ---------- uploader component ---------- */
+    function makeUploader(container, { current, accept = 'image/*', onChange }) {
+      container.innerHTML = '';
+      const label = document.createElement('label');
+      label.className = 'uploader';
+
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = accept;
+
+      const preview = document.createElement('div');
+      const placeholder = document.createElement('div');
+      placeholder.className = 'uploader__placeholder';
+      placeholder.innerHTML = '<div class="uploader__icon">📸</div><div>Clique para enviar do computador ou celular</div><div style="font-size:0.72rem;opacity:0.7">JPG, PNG ou vídeo</div>';
+
+      function showPreview(value) {
+        preview.innerHTML = '';
+        if (!value) {
+          preview.appendChild(placeholder);
+          return;
+        }
+        const data = typeof value === 'string' ? value : value.data;
+        const type = typeof value === 'string' ? 'image' : value.type;
+        let el;
+        if (type === 'video') {
+          el = document.createElement('video');
+          el.src = data;
+          el.controls = true;
+          el.className = 'uploader__preview';
+        } else {
+          el = document.createElement('img');
+          el.src = data;
+          el.className = 'uploader__preview';
+        }
+        preview.appendChild(el);
+        const rm = document.createElement('button');
+        rm.className = 'uploader__remove';
+        rm.textContent = '×';
+        rm.title = 'Remover';
+        rm.onclick = (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onChange(null);
+          showPreview(null);
+        };
+        preview.appendChild(rm);
+      }
+
+      input.addEventListener('change', async (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        label.style.opacity = '0.6';
+        try {
+          const processed = await processImage(file);
+          onChange(processed);
+          showPreview(processed);
+        } catch (err) {
+          console.error(err);
+          toast('Erro ao processar arquivo.', false);
+        } finally {
+          label.style.opacity = '1';
+          input.value = '';
+        }
+      });
+
+      label.appendChild(input);
+      label.appendChild(preview);
+      container.appendChild(label);
+      showPreview(current);
+    }
+
+    /* ---------- render ---------- */
+    function renderLogo() {
+      const el = document.querySelector('[data-uploader="logo"]');
+      makeUploader(el, {
+        current: state.logo,
+        accept: 'image/*',
+        onChange: (v) => { state.logo = v ? v.data : null; saveDraft(); }
+      });
+    }
+
+    function renderHero() {
+      const el = document.querySelector('[data-uploader="hero"]');
+      const current = state.hero ? { data: state.hero, type: state.heroType || 'image' } : null;
+      makeUploader(el, {
+        current,
+        accept: 'image/*,video/*',
+        onChange: (v) => {
+          state.hero = v ? v.data : null;
+          state.heroType = v ? v.type : null;
+          saveDraft();
+        }
+      });
+    }
+
+    function renderTransformations() {
+      const list = document.getElementById('transformationsList');
+      list.innerHTML = '';
+      state.transformations.forEach((t, i) => {
+        const card = document.createElement('div');
+        card.className = 'transformation-card';
+        card.innerHTML = `
+          <div class="transformation-card__header">
+            <div class="transformation-card__title">Transformação #${i+1}</div>
+            <button class="danger" data-remove="${i}">Remover</button>
+          </div>
+          <div>
+            <div class="ba-pair__label">Imagem combinada (antes | depois lado a lado)</div>
+            <div data-ba="image-${i}"></div>
+            <div style="font-size:0.72rem;color:#777;margin-top:0.4rem;">
+              Suba <b>uma única foto</b> com o antes do lado esquerdo e o depois do lado direito. O site vai dividir ao meio automaticamente no slider.
+            </div>
+          </div>
+          <div class="info-row">
+            <input class="input" placeholder="Nome" value="${escapeHtml(t.name || '')}" data-field="name-${i}">
+            <input class="input" placeholder="Idade" type="number" value="${t.age || ''}" data-field="age-${i}">
+            <input class="input" placeholder="Tempo (ex: 6 meses)" value="${escapeHtml(t.time || '')}" data-field="time-${i}">
+          </div>
+        `;
+        list.appendChild(card);
+
+        makeUploader(card.querySelector(`[data-ba="image-${i}"]`), {
+          current: t.image,
+          onChange: (v) => { state.transformations[i].image = v ? v.data : null; saveDraft(); }
+        });
+
+        card.querySelector(`[data-field="name-${i}"]`).addEventListener('input', e => { state.transformations[i].name = e.target.value; saveDraft(); });
+        card.querySelector(`[data-field="age-${i}"]`).addEventListener('input', e => { state.transformations[i].age = e.target.value; saveDraft(); });
+        card.querySelector(`[data-field="time-${i}"]`).addEventListener('input', e => { state.transformations[i].time = e.target.value; saveDraft(); });
+        card.querySelector(`[data-remove="${i}"]`).addEventListener('click', () => {
+          if (!confirm('Remover esta transformação?')) return;
+          state.transformations.splice(i, 1);
+          saveDraft();
+          renderTransformations();
+        });
+      });
+    }
+
+    function renderAll() {
+      renderLogo();
+      renderHero();
+      renderTransformations();
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+
+    function toast(msg, success=true) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast show' + (success ? ' success' : '');
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => { t.className = 'toast'; }, 3000);
+    }
+
+    /* ---------- bindings ---------- */
+    document.getElementById('btnPublish').addEventListener('click', publish);
+    document.getElementById('btnReset').addEventListener('click', discardDraft);
+    document.getElementById('btnViewSite').addEventListener('click', () => {
+      window.open('index.html?v=' + Date.now(), '_blank');
+    });
+    document.getElementById('btnExport').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'vsteam-site-' + new Date().toISOString().slice(0,10) + '.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      toast('JSON exportado.', true);
+    });
+    document.getElementById('fileImport').addEventListener('change', async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      try {
+        const text = await file.text();
+        const imported = JSON.parse(text);
+        if (!imported || typeof imported !== 'object') throw new Error('invalid');
+        state = migrateState(imported);
+        saveDraft();
+        renderAll();
+        toast('JSON importado. Clique em Publicar para aplicar.', true);
+      } catch (err) {
+        toast('Arquivo JSON inválido.', false);
+      }
+      e.target.value = '';
+    });
+    document.getElementById('btnAddTransformation').addEventListener('click', () => {
+      state.transformations.push({ name: '', age: '', time: '', image: null });
+      saveDraft();
+      renderTransformations();
+    });
+
+    window.addEventListener('beforeunload', (e) => {
+      if (dirty) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    });
+
+    renderAll();
+    updateStatus();
+  </script>
+</body>
+</html>
