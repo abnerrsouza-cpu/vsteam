@@ -531,23 +531,22 @@ function animateCounter(el) {
   const target = parseFloat(el.dataset.count);
   const decimals = parseInt(el.dataset.decimals || '0', 10);
   const suffix = el.dataset.suffix || '';
+  const prefix = el.dataset.prefix || '';
   const duration = 1800;
   const start = performance.now();
+
+  const fmt = (v) => prefix + v.toLocaleString('pt-BR', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  }) + suffix;
 
   const tick = (now) => {
     const elapsed = now - start;
     const progress = Math.min(1, elapsed / duration);
     const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-    const value = target * eased;
-    el.textContent = value.toLocaleString('pt-BR', {
-      minimumFractionDigits: decimals,
-      maximumFractionDigits: decimals
-    }) + suffix;
+    el.textContent = fmt(target * eased);
     if (progress < 1) requestAnimationFrame(tick);
-    else el.textContent = target.toLocaleString('pt-BR', {
-      minimumFractionDigits: decimals,
-      maximumFractionDigits: decimals
-    }) + suffix;
+    else el.textContent = fmt(target);
   };
   requestAnimationFrame(tick);
 }
